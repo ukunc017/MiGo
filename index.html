@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="tr">
   <head>
     <meta charset="UTF-8" />
@@ -30,6 +30,32 @@
         </div>
       </section>
 
+      <section class="progress-strip" aria-label="Ogrenme ilerlemesi">
+        <article class="stat-card">
+          <span>Ogrenilen</span>
+          <strong id="learned-count">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>Dogru cevap</span>
+          <strong id="correct-count">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>Basari</span>
+          <strong id="accuracy-rate">0%</strong>
+        </article>
+      </section>
+
+      <section class="study-toolbar" aria-label="Kategori secimi">
+        <div>
+          <p class="eyebrow">Ogrenme yolu</p>
+          <h2>Kategori sec</h2>
+        </div>
+        <label class="category-select">
+          <span>Kart ve quiz kategorisi</span>
+          <select id="category-filter"></select>
+        </label>
+      </section>
+
       <section class="dashboard" aria-label="Ogrenme bolumleri">
         <article class="panel flashcard-panel">
           <div class="section-heading">
@@ -42,6 +68,7 @@
           <p class="example hidden" id="flash-example">Silav, tu çawa yî?</p>
           <div class="button-row">
             <button class="primary" id="show-meaning">Anlami goster</button>
+            <button class="ghost" id="mark-learned">Ogrendim</button>
             <button class="ghost" id="next-card">Sonraki</button>
           </div>
         </article>
@@ -66,6 +93,19 @@
             <span>Skor</span>
             <strong id="score">0</strong>
           </div>
+        </article>
+
+        <article class="panel mistakes-panel">
+          <div class="section-heading">
+            <p>Yanlislar defteri</p>
+            <h2>Tekrar et</h2>
+          </div>
+          <p class="mistake-copy">
+            Quizde zorlandigin kelimeler burada birikir. MiGo onlari tekrar
+            karsina cikarir.
+          </p>
+          <ul class="mistake-list" id="mistake-list"></ul>
+          <button class="ghost clear-button" id="clear-progress">Ilerlemeyi sifirla</button>
         </article>
       </section>
     </main>
