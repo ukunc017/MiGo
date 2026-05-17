@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MiGo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">MiGo ile Kurmanci</p>
+          <h1>MiGo ile Kurtceyi her gun biraz daha yakinlastir.</h1>
+          <p class="hero-copy">
+            Kelime kartlari, gunluk ifadeler ve kucuk quizlerle Kurmanci
+            ogrenmeye sicak, sade ve eglenceli bir giris.
+          </p>
+        </div>
+        <div class="word-of-day" aria-live="polite">
+          <span>Gunun kelimesi</span>
+          <strong id="daily-word">heval</strong>
+          <p id="daily-meaning">arkadas</p>
+        </div>
+      </section>
+
+      <section class="dashboard" aria-label="Ogrenme bolumleri">
+        <article class="panel flashcard-panel">
+          <div class="section-heading">
+            <p>Kelime karti</p>
+            <h2 id="flash-word">silav</h2>
+          </div>
+          <span class="category-pill" id="flash-category">Selamlasma</span>
+          <p class="pronunciation" id="flash-pronunciation">si-lav</p>
+          <p class="translation hidden" id="flash-translation">merhaba</p>
+          <p class="example hidden" id="flash-example">Silav, tu çawa yî?</p>
+          <div class="button-row">
+            <button class="primary" id="show-meaning">Anlami goster</button>
+            <button class="ghost" id="next-card">Sonraki</button>
+          </div>
+        </article>
+
+        <article class="panel phrases-panel">
+          <div class="section-heading">
+            <p>Gunluk ifadeler</p>
+            <h2>Hemen kullan</h2>
+          </div>
+          <ul class="phrase-list" id="phrase-list"></ul>
+        </article>
+
+        <article class="panel quiz-panel">
+          <div class="section-heading">
+            <p>Mini quiz</p>
+            <h2 id="quiz-question">Bu kelimenin anlami nedir?</h2>
+          </div>
+          <div class="quiz-word" id="quiz-word">spas</div>
+          <div class="options" id="quiz-options"></div>
+          <p class="feedback" id="quiz-feedback">Dogru cevabi sec.</p>
+          <div class="score">
+            <span>Skor</span>
+            <strong id="score">0</strong>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
