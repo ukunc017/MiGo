@@ -68,6 +68,29 @@ button:disabled {
   margin-bottom: 28px;
 }
 
+.brand-lockup {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 8px 14px 8px 8px;
+  border-radius: 999px;
+  background: rgba(255, 250, 237, 0.7);
+  box-shadow: 0 14px 40px rgba(47, 34, 17, 0.12);
+}
+
+.brand-lockup img {
+  width: 46px;
+  height: 46px;
+}
+
+.brand-lockup span {
+  color: var(--deep);
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
 .eyebrow,
 .section-heading p,
 .word-of-day span {

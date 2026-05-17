@@ -1,0 +1,12 @@
+﻿<svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">MiGo logo</title>
+  <desc id="desc">A warm sun-shaped MiGo mark with an open path and Kurdish learning initials.</desc>
+  <rect width="320" height="320" rx="84" fill="#FFF8E8"/>
+  <circle cx="160" cy="160" r="118" fill="#233528"/>
+  <path d="M160 44C173.4 78.4 197.6 102.6 232 116C197.6 129.4 173.4 153.6 160 188C146.6 153.6 122.4 129.4 88 116C122.4 102.6 146.6 78.4 160 44Z" fill="#F2B84B"/>
+  <path d="M77 187C97.5 157.5 128.4 139 162.4 139C196.4 139 226.8 157.1 243 185" stroke="#FFF8E8" stroke-width="20" stroke-linecap="round"/>
+  <path d="M91 213C113.7 198.8 137 192 161 192C185 192 207.8 198.8 229 213" stroke="#B85C38" stroke-width="18" stroke-linecap="round"/>
+  <path d="M101 240C119.7 231.3 139.5 227 160.5 227C181.5 227 201.1 231.3 219 240" stroke="#617C58" stroke-width="16" stroke-linecap="round"/>
+  <text x="160" y="172" text-anchor="middle" fill="#FFF8E8" font-family="Lexend, Arial, sans-serif" font-size="58" font-weight="800" letter-spacing="-2">Mi</text>
+  <text x="160" y="222" text-anchor="middle" fill="#F2B84B" font-family="Lexend, Arial, sans-serif" font-size="58" font-weight="800" letter-spacing="-2">Go</text>
+</svg>
