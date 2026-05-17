@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="tr">
+<html lang="ku">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,96 +16,94 @@
     <main class="app-shell">
       <section class="hero">
         <div>
-          <p class="eyebrow">MiGo ile Kurmanci</p>
-          <h1>MiGo ile Kurtceyi her gun biraz daha yakinlastir.</h1>
+          <p class="eyebrow">Bi MiGo re Kurmancî</p>
+          <h1>Bi MiGo re her roj hinekî Kurmancî hîn bibe.</h1>
           <p class="hero-copy">
-            Kelime kartlari, gunluk ifadeler ve kucuk quizlerle Kurmanci
-            ogrenmeye sicak, sade ve eglenceli bir giris.
+            Bi kartên peyvan, gotinên rojane û quizên biçûk, destpêkeke sade, germ û xweş ji bo fêrbûna Kurmancî.
           </p>
         </div>
         <div class="word-of-day" aria-live="polite">
-          <span>Gunun kelimesi</span>
+          <span>Peyva rojê</span>
           <strong id="daily-word">heval</strong>
-          <p id="daily-meaning">arkadas</p>
+          <p id="daily-meaning">kesê nêzîk</p>
         </div>
       </section>
 
-      <section class="progress-strip" aria-label="Ogrenme ilerlemesi">
+      <section class="progress-strip" aria-label="Pêşketina fêrbûnê">
         <article class="stat-card">
-          <span>Ogrenilen</span>
+          <span>Hatiye hînbûn</span>
           <strong id="learned-count">0</strong>
         </article>
         <article class="stat-card">
-          <span>Dogru cevap</span>
+          <span>Bersiva rast</span>
           <strong id="correct-count">0</strong>
         </article>
         <article class="stat-card">
-          <span>Basari</span>
+          <span>Serkeftin</span>
           <strong id="accuracy-rate">0%</strong>
         </article>
       </section>
 
-      <section class="study-toolbar" aria-label="Kategori secimi">
+      <section class="study-toolbar" aria-label="Hilbijartina kategoriyê">
         <div>
-          <p class="eyebrow">Ogrenme yolu</p>
-          <h2>Kategori sec</h2>
+          <p class="eyebrow">Rêya fêrbûnê</p>
+          <h2>Kategorî hilbijêre</h2>
         </div>
         <label class="category-select">
-          <span>Kart ve quiz kategorisi</span>
+          <span>Kategoriya kart û quizê</span>
           <select id="category-filter"></select>
         </label>
       </section>
 
-      <section class="dashboard" aria-label="Ogrenme bolumleri">
+      <section class="dashboard" aria-label="Beşên fêrbûnê">
         <article class="panel flashcard-panel">
           <div class="section-heading">
-            <p>Kelime karti</p>
+            <p>Karta peyvê</p>
             <h2 id="flash-word">silav</h2>
           </div>
-          <span class="category-pill" id="flash-category">Selamlasma</span>
+          <span class="category-pill" id="flash-category">Silavkirin</span>
           <p class="pronunciation" id="flash-pronunciation">si-lav</p>
-          <p class="translation hidden" id="flash-translation">merhaba</p>
+          <p class="translation hidden" id="flash-translation">gotina silavê</p>
           <p class="example hidden" id="flash-example">Silav, tu çawa yî?</p>
           <div class="button-row">
-            <button class="primary" id="show-meaning">Anlami goster</button>
-            <button class="ghost" id="mark-learned">Ogrendim</button>
-            <button class="ghost" id="next-card">Sonraki</button>
+            <button class="primary" id="show-meaning">Wateyê nîşan bide</button>
+            <button class="ghost" id="mark-learned">Min hîn bû</button>
+            <button class="ghost" id="next-card">Ya piştî wê</button>
           </div>
         </article>
 
         <article class="panel phrases-panel">
           <div class="section-heading">
-            <p>Gunluk ifadeler</p>
-            <h2>Hemen kullan</h2>
+            <p>Gotinên rojane</p>
+            <h2>Niha bikar bîne</h2>
           </div>
           <ul class="phrase-list" id="phrase-list"></ul>
         </article>
 
         <article class="panel quiz-panel">
           <div class="section-heading">
-            <p>Mini quiz</p>
-            <h2 id="quiz-question">Bu kelimenin anlami nedir?</h2>
+            <p>Quizê biçûk</p>
+            <h2 id="quiz-question">Wateya vê peyvê çi ye?</h2>
           </div>
           <div class="quiz-word" id="quiz-word">spas</div>
           <div class="options" id="quiz-options"></div>
-          <p class="feedback" id="quiz-feedback">Dogru cevabi sec.</p>
+          <p class="feedback" id="quiz-feedback">Bersiva rast hilbijêre.</p>
           <div class="score">
-            <span>Skor</span>
+            <span>Pûan</span>
             <strong id="score">0</strong>
           </div>
         </article>
 
         <article class="panel mistakes-panel">
           <div class="section-heading">
-            <p>Yanlislar defteri</p>
-            <h2>Tekrar et</h2>
+            <p>Deftera şaşiyan</p>
+            <h2>Dîsa bike</h2>
           </div>
           <p class="mistake-copy">
-            Quizde zorlandigin kelimeler burada birikir. MiGo onlari tekrar
-            karsina cikarir.
+            Peyvên ku di quizê de ji te re zor in li vir kom dibin. MiGo wan dîsa tîne pêşiya te.
           </p>
           <ul class="mistake-list" id="mistake-list"></ul>
-          <button class="ghost clear-button" id="clear-progress">Ilerlemeyi sifirla</button>
+          <button class="ghost clear-button" id="clear-progress">Pêşketinê ji nû ve bike</button>
         </article>
       </section>
     </main>
@@ -113,3 +111,7 @@
     <script src="app.js"></script>
   </body>
 </html>
+
+
+
+
