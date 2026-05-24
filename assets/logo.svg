@@ -1,12 +1,26 @@
-﻿<svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">MiGo logo</title>
-  <desc id="desc">A warm sun-shaped MiGo mark with an open path and Kurdish learning initials.</desc>
-  <rect width="320" height="320" rx="84" fill="#FFF8E8"/>
-  <circle cx="160" cy="160" r="118" fill="#233528"/>
-  <path d="M160 44C173.4 78.4 197.6 102.6 232 116C197.6 129.4 173.4 153.6 160 188C146.6 153.6 122.4 129.4 88 116C122.4 102.6 146.6 78.4 160 44Z" fill="#F2B84B"/>
-  <path d="M77 187C97.5 157.5 128.4 139 162.4 139C196.4 139 226.8 157.1 243 185" stroke="#FFF8E8" stroke-width="20" stroke-linecap="round"/>
-  <path d="M91 213C113.7 198.8 137 192 161 192C185 192 207.8 198.8 229 213" stroke="#B85C38" stroke-width="18" stroke-linecap="round"/>
-  <path d="M101 240C119.7 231.3 139.5 227 160.5 227C181.5 227 201.1 231.3 219 240" stroke="#617C58" stroke-width="16" stroke-linecap="round"/>
-  <text x="160" y="172" text-anchor="middle" fill="#FFF8E8" font-family="Lexend, Arial, sans-serif" font-size="58" font-weight="800" letter-spacing="-2">Mi</text>
-  <text x="160" y="222" text-anchor="middle" fill="#F2B84B" font-family="Lexend, Arial, sans-serif" font-size="58" font-weight="800" letter-spacing="-2">Go</text>
+  <desc id="desc">A modern MiGo app icon with a Kurdish learning path, sun accent, and refined wordmark.</desc>
+  <defs>
+    <linearGradient id="base" x1="46" y1="34" x2="278" y2="294" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#123B38"/>
+      <stop offset="0.55" stop-color="#0F2F2B"/>
+      <stop offset="1" stop-color="#071918"/>
+    </linearGradient>
+    <linearGradient id="path" x1="70" y1="214" x2="252" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F0B949"/>
+      <stop offset="0.48" stop-color="#F7E1A0"/>
+      <stop offset="1" stop-color="#2A7F86"/>
+    </linearGradient>
+    <filter id="softShadow" x="18" y="18" width="284" height="292" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#09231F" flood-opacity="0.24"/>
+    </filter>
+  </defs>
+  <rect x="28" y="22" width="264" height="276" rx="68" fill="url(#base)" filter="url(#softShadow)"/>
+  <path d="M68 216C93.7 185.7 124.4 170.5 160 170.5C195.6 170.5 226.3 185.7 252 216" stroke="url(#path)" stroke-width="24" stroke-linecap="round"/>
+  <path d="M90 239C111.5 225.4 134.8 218.6 160 218.6C185.2 218.6 208.5 225.4 230 239" stroke="#FBF7EF" stroke-opacity="0.86" stroke-width="16" stroke-linecap="round"/>
+  <path d="M160 58L171.7 94.3H209.9L179 116.7L190.8 153L160 130.6L129.2 153L141 116.7L110.1 94.3H148.3L160 58Z" fill="#F0B949"/>
+  <circle cx="220" cy="88" r="18" fill="#C95437"/>
+  <text x="160" y="168" text-anchor="middle" fill="#FBF7EF" font-family="Lexend, Arial, sans-serif" font-size="58" font-weight="900">Mi</text>
+  <text x="160" y="216" text-anchor="middle" fill="#F0B949" font-family="Lexend, Arial, sans-serif" font-size="58" font-weight="900">Go</text>
 </svg>
