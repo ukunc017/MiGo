@@ -21,53 +21,53 @@
             <img src="assets/logo.svg" alt="MiGo logo" />
             <span>MiGo</span>
           </div>
-          <p class="eyebrow">Bi MiGo re Kurmancî</p>
-          <h1>Bi MiGo re her roj hinekî Kurmancî hîn bibe.</h1>
-          <p class="hero-copy">
+          <p class="eyebrow" data-i18n="heroEyebrow">Bi MiGo re Kurmancî</p>
+          <h1 data-i18n="heroTitle">Bi MiGo re her roj hinekî Kurmancî hîn bibe.</h1>
+          <p class="hero-copy" data-i18n="heroCopy">
             Bi kartên peyvan, gotinên rojane û quizên biçûk, destpêkeke sade, germ û xweş ji bo fêrbûna Kurmancî.
           </p>
         </div>
         <div class="word-of-day" aria-live="polite">
-          <span>Peyva rojê</span>
+          <span data-i18n="dailyWordLabel">Peyva rojê</span>
           <strong id="daily-word">heval</strong>
           <p id="daily-meaning">kesê nêzîk</p>
         </div>
       </section>
 
-      <section class="progress-strip" aria-label="Pêşketina fêrbûnê">
+      <section class="progress-strip" aria-label="Pêşketina fêrbûnê" data-i18n-aria="progressAria">
         <article class="stat-card">
-          <span>Hatiye hînbûn</span>
+          <span data-i18n="learnedLabel">Hatiye hînbûn</span>
           <strong id="learned-count">0</strong>
         </article>
         <article class="stat-card">
-          <span>Bersiva rast</span>
+          <span data-i18n="correctLabel">Bersiva rast</span>
           <strong id="correct-count">0</strong>
         </article>
         <article class="stat-card">
-          <span>Serkeftin</span>
+          <span data-i18n="accuracyLabel">Serkeftin</span>
           <strong id="accuracy-rate">0%</strong>
         </article>
       </section>
 
-      <section class="study-toolbar" aria-label="Hilbijartina fêrbûnê">
+      <section class="study-toolbar" aria-label="Hilbijartina fêrbûnê" data-i18n-aria="toolbarAria">
         <div>
-          <p class="eyebrow">Rêya fêrbûnê</p>
-          <h2>Kategorî hilbijêre</h2>
+          <p class="eyebrow" data-i18n="studyEyebrow">Rêya fêrbûnê</p>
+          <h2 data-i18n="studyTitle">Kategorî hilbijêre</h2>
         </div>
         <label class="language-select">
-          <span>Öğrenme dili</span>
+          <span data-i18n="languageLabel">Öğrenme dili</span>
           <select id="learning-language"></select>
         </label>
         <label class="category-select">
-          <span>Kategoriya kart û quizê</span>
+          <span data-i18n="categoryLabel">Kategoriya kart û quizê</span>
           <select id="category-filter"></select>
         </label>
       </section>
 
-      <section class="dashboard" aria-label="Beşên fêrbûnê">
+      <section class="dashboard" aria-label="Beşên fêrbûnê" data-i18n-aria="dashboardAria">
         <article class="panel flashcard-panel">
           <div class="section-heading">
-            <p>Karta peyvê</p>
+            <p data-i18n="flashcardEyebrow">Karta peyvê</p>
             <h2 id="flash-word">silav</h2>
           </div>
           <span class="category-pill" id="flash-category">Silavkirin</span>
@@ -83,36 +83,36 @@
 
         <article class="panel phrases-panel">
           <div class="section-heading">
-            <p>Gotinên rojane</p>
-            <h2>Niha bikar bîne</h2>
+            <p data-i18n="phrasesEyebrow">Gotinên rojane</p>
+            <h2 data-i18n="phrasesTitle">Niha bikar bîne</h2>
           </div>
           <ul class="phrase-list" id="phrase-list"></ul>
         </article>
 
         <article class="panel quiz-panel">
           <div class="section-heading">
-            <p>Quizê biçûk</p>
-            <h2 id="quiz-question">Wateya vê peyvê çi ye?</h2>
+            <p data-i18n="quizEyebrow">Quizê biçûk</p>
+            <h2 id="quiz-question" data-i18n="quizTitle">Wateya vê peyvê çi ye?</h2>
           </div>
           <div class="quiz-word" id="quiz-word">spas</div>
           <div class="options" id="quiz-options"></div>
           <p class="feedback" id="quiz-feedback">Bersiva rast hilbijêre.</p>
           <div class="score">
-            <span>Pûan</span>
+            <span data-i18n="scoreLabel">Pûan</span>
             <strong id="score">0</strong>
           </div>
         </article>
 
         <article class="panel mistakes-panel">
           <div class="section-heading">
-            <p>Deftera şaşiyan</p>
-            <h2>Dîsa bike</h2>
+            <p data-i18n="mistakesEyebrow">Deftera şaşiyan</p>
+            <h2 data-i18n="mistakesTitle">Dîsa bike</h2>
           </div>
-          <p class="mistake-copy">
+          <p class="mistake-copy" data-i18n="mistakesCopy">
             Peyvên ku di quizê de ji te re zor in li vir kom dibin. MiGo wan dîsa tîne pêşiya te.
           </p>
           <ul class="mistake-list" id="mistake-list"></ul>
-          <button class="ghost clear-button" id="clear-progress">Pêşketinê ji nû ve bike</button>
+          <button class="ghost clear-button" id="clear-progress" data-i18n="clearProgressButton">Pêşketinê ji nû ve bike</button>
         </article>
       </section>
     </main>

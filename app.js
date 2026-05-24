@@ -98,6 +98,129 @@ const phrases = [
   { ku: "Ev çi ye?", meaning: { tr: "Bu nedir?", de: "Was ist das?", en: "What is this?" } },
 ];
 
+const uiText = {
+  tr: {
+    pageLang: "tr",
+    allCategories: "Tüm kategoriler",
+    heroEyebrow: "MiGo ile Kurmanci",
+    heroTitle: "Her gün biraz Kurmanci öğren.",
+    heroCopy: "Kelime kartları, günlük cümleler ve kısa quizlerle Kurmanci öğrenmeye sıcak ve sade bir başlangıç yap.",
+    dailyWordLabel: "Günün kelimesi",
+    progressAria: "Öğrenme ilerlemesi",
+    learnedLabel: "Öğrenilen",
+    correctLabel: "Doğru cevap",
+    accuracyLabel: "Başarı",
+    toolbarAria: "Öğrenme ayarları",
+    studyEyebrow: "Öğrenme yolu",
+    studyTitle: "Kategori seç",
+    languageLabel: "Uygulama dili",
+    categoryLabel: "Kart ve quiz kategorisi",
+    dashboardAria: "Öğrenme bölümleri",
+    flashcardEyebrow: "Kelime kartı",
+    showMeaning: "Anlamı göster",
+    hideMeaning: "Anlamı gizle",
+    markLearned: "Öğrendim",
+    learnedButton: "Öğrenildi",
+    nextCard: "Sonraki kart",
+    phrasesEyebrow: "Günlük ifadeler",
+    phrasesTitle: "Hemen kullan",
+    quizEyebrow: "Kısa quiz",
+    quizTitle: "Bu kelimenin anlamı ne?",
+    scoreLabel: "Puan",
+    chooseAnswer: "Doğru cevabı seç.",
+    correctFeedback: "Doğru! Çok iyi gidiyorsun.",
+    wrongFeedback: "Yaklaştın. Doğru cevap:",
+    cardsLabel: "kart",
+    mistakesEyebrow: "Hata defteri",
+    mistakesTitle: "Tekrar et",
+    mistakesCopy: "Quizde zorlandığın kelimeler burada toplanır. MiGo onları tekrar önüne getirir.",
+    noMistakesTitle: "Henüz hata yok",
+    noMistakesCopy: "Quiz çözdükçe bu bölüm akıllanır.",
+    repeatCount: "kez tekrar edilmeli",
+    clearProgressButton: "İlerlemeyi sıfırla",
+  },
+  de: {
+    pageLang: "de",
+    allCategories: "Alle Kategorien",
+    heroEyebrow: "Kurmanci mit MiGo",
+    heroTitle: "Lerne jeden Tag ein wenig Kurmanci.",
+    heroCopy: "Starte einfach und angenehm mit Wortkarten, Alltagssätzen und kurzen Quizzen.",
+    dailyWordLabel: "Wort des Tages",
+    progressAria: "Lernfortschritt",
+    learnedLabel: "Gelernt",
+    correctLabel: "Richtige Antworten",
+    accuracyLabel: "Trefferquote",
+    toolbarAria: "Lerneinstellungen",
+    studyEyebrow: "Lernweg",
+    studyTitle: "Kategorie wählen",
+    languageLabel: "App-Sprache",
+    categoryLabel: "Kategorie für Karten und Quiz",
+    dashboardAria: "Lernbereiche",
+    flashcardEyebrow: "Wortkarte",
+    showMeaning: "Bedeutung zeigen",
+    hideMeaning: "Bedeutung ausblenden",
+    markLearned: "Gelernt",
+    learnedButton: "Bereits gelernt",
+    nextCard: "Nächste Karte",
+    phrasesEyebrow: "Alltagssätze",
+    phrasesTitle: "Direkt verwenden",
+    quizEyebrow: "Kurzquiz",
+    quizTitle: "Was bedeutet dieses Wort?",
+    scoreLabel: "Punkte",
+    chooseAnswer: "Wähle die richtige Antwort.",
+    correctFeedback: "Richtig! Du kommst sehr gut voran.",
+    wrongFeedback: "Fast. Die richtige Antwort:",
+    cardsLabel: "Karten",
+    mistakesEyebrow: "Fehlerliste",
+    mistakesTitle: "Noch einmal üben",
+    mistakesCopy: "Wörter, die dir im Quiz schwerfallen, werden hier gesammelt. MiGo zeigt sie dir erneut.",
+    noMistakesTitle: "Noch keine Fehler",
+    noMistakesCopy: "Dieser Bereich füllt sich, sobald du Quizfragen beantwortest.",
+    repeatCount: "Mal wiederholen",
+    clearProgressButton: "Fortschritt zurücksetzen",
+  },
+  en: {
+    pageLang: "en",
+    allCategories: "All categories",
+    heroEyebrow: "Kurmanci with MiGo",
+    heroTitle: "Learn a little Kurmanci every day.",
+    heroCopy: "Start warmly and simply with word cards, everyday phrases, and quick quizzes.",
+    dailyWordLabel: "Word of the day",
+    progressAria: "Learning progress",
+    learnedLabel: "Learned",
+    correctLabel: "Correct answers",
+    accuracyLabel: "Accuracy",
+    toolbarAria: "Learning settings",
+    studyEyebrow: "Learning path",
+    studyTitle: "Choose a category",
+    languageLabel: "App language",
+    categoryLabel: "Card and quiz category",
+    dashboardAria: "Learning sections",
+    flashcardEyebrow: "Word card",
+    showMeaning: "Show meaning",
+    hideMeaning: "Hide meaning",
+    markLearned: "I learned it",
+    learnedButton: "Learned",
+    nextCard: "Next card",
+    phrasesEyebrow: "Everyday phrases",
+    phrasesTitle: "Use now",
+    quizEyebrow: "Quick quiz",
+    quizTitle: "What does this word mean?",
+    scoreLabel: "Score",
+    chooseAnswer: "Choose the correct answer.",
+    correctFeedback: "Correct! You are doing great.",
+    wrongFeedback: "Close. The correct answer:",
+    cardsLabel: "cards",
+    mistakesEyebrow: "Mistake notebook",
+    mistakesTitle: "Practice again",
+    mistakesCopy: "Words that feel difficult in the quiz are collected here. MiGo brings them back for review.",
+    noMistakesTitle: "No mistakes yet",
+    noMistakesCopy: "This section gets smarter as you answer quiz questions.",
+    repeatCount: "times to repeat",
+    clearProgressButton: "Reset progress",
+  },
+};
+
 const STORAGE_KEY = "migo-progress-v1";
 const PREFS_KEY = "migo-preferences-v1";
 const defaultProgress = {
@@ -110,7 +233,7 @@ const defaultProgress = {
 let cardIndex = 0;
 let quizItem = null;
 let score = 0;
-let selectedCategory = "Hemû kategorî";
+let selectedCategory = "all";
 let selectedLanguage = loadPreferences().language;
 let progress = loadProgress();
 
@@ -166,8 +289,22 @@ function translate(item) {
   return item.meaning[selectedLanguage] || item.meaning.tr;
 }
 
+function t(key) {
+  return uiText[selectedLanguage][key] || uiText.tr[key] || key;
+}
+
+function renderInterfaceText() {
+  document.documentElement.lang = t("pageLang");
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    element.textContent = t(element.dataset.i18n);
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
+    element.setAttribute("aria-label", t(element.dataset.i18nAria));
+  });
+}
+
 function getActiveVocabulary() {
-  if (selectedCategory === "Hemû kategorî") {
+  if (selectedCategory === "all") {
     return vocabulary;
   }
 
@@ -202,10 +339,17 @@ function renderLanguageSelect() {
 }
 
 function renderCategoryFilter() {
-  const categories = ["Hemû kategorî", ...new Set(vocabulary.map((item) => item.category))];
+  const categories = [
+    { value: "all", label: t("allCategories") },
+    ...[...new Set(vocabulary.map((item) => item.category))].map((category) => ({
+      value: category,
+      label: category,
+    })),
+  ];
   categoryFilter.innerHTML = categories
-    .map((category) => `<option value="${category}">${category}</option>`)
+    .map((category) => `<option value="${category.value}">${category.label}</option>`)
     .join("");
+  categoryFilter.value = selectedCategory;
 }
 
 function renderCard() {
@@ -220,8 +364,9 @@ function renderCard() {
   flashExample.textContent = item.example;
   flashTranslation.classList.add("hidden");
   flashExample.classList.add("hidden");
-  showMeaningButton.textContent = "Wateyê nîşan bide";
-  markLearnedButton.textContent = isLearned ? "Hatiye hînbûn" : "Min hîn bû";
+  showMeaningButton.textContent = t("showMeaning");
+  markLearnedButton.textContent = isLearned ? t("learnedButton") : t("markLearned");
+  nextCardButton.textContent = t("nextCard");
   markLearnedButton.disabled = isLearned;
 }
 
@@ -248,7 +393,7 @@ function renderMistakes() {
     .sort((a, b) => b.count - a.count);
 
   if (mistakeItems.length === 0) {
-    mistakeList.innerHTML = "<li><strong>Hê şaşî tune ye</strong><span>Gava tu quizê dixebitînî, ev beş jîr dibe.</span></li>";
+    mistakeList.innerHTML = `<li><strong>${t("noMistakesTitle")}</strong><span>${t("noMistakesCopy")}</span></li>`;
     return;
   }
 
@@ -257,7 +402,7 @@ function renderMistakes() {
       (item) => `
         <li>
           <strong>${item.word} · ${translate(item)}</strong>
-          <span>${item.count} caran divê were dubarekirin · ${item.category}</span>
+          <span>${item.count} ${t("repeatCount")} · ${item.category}</span>
         </li>
       `,
     )
@@ -290,7 +435,8 @@ function buildQuiz() {
   const answers = shuffle([translate(quizItem), ...wrongAnswers]);
 
   quizWord.textContent = quizItem.word;
-  quizFeedback.textContent = `${selectedCategory} · ${activeVocabulary.length} kart · ${languageOptions[selectedLanguage]}`;
+  const categoryLabel = selectedCategory === "all" ? t("allCategories") : selectedCategory;
+  quizFeedback.textContent = `${categoryLabel} · ${activeVocabulary.length} ${t("cardsLabel")} · ${languageOptions[selectedLanguage]}`;
   quizOptions.innerHTML = answers
     .map((answer) => `<button class="option" type="button">${answer}</button>`)
     .join("");
@@ -313,7 +459,7 @@ showMeaningButton.addEventListener("click", () => {
   const shouldHide = !flashTranslation.classList.contains("hidden");
   flashTranslation.classList.toggle("hidden", shouldHide);
   flashExample.classList.toggle("hidden", shouldHide);
-  showMeaningButton.textContent = shouldHide ? "Wateyê nîşan bide" : "Wateyê veşêre";
+  showMeaningButton.textContent = shouldHide ? t("showMeaning") : t("hideMeaning");
 });
 
 markLearnedButton.addEventListener("click", markCurrentCardAsLearned);
@@ -326,6 +472,8 @@ nextCardButton.addEventListener("click", () => {
 languageSelect.addEventListener("change", (event) => {
   selectedLanguage = event.target.value;
   savePreferences();
+  renderInterfaceText();
+  renderCategoryFilter();
   setDailyWord();
   renderCard();
   renderPhrases();
@@ -353,14 +501,14 @@ quizOptions.addEventListener("click", (event) => {
     score += 1;
     progress.correctAnswers += 1;
     delete progress.mistakes[quizItem.word];
-    quizFeedback.textContent = "Rast e! Tu pir baş diçî.";
+    quizFeedback.textContent = t("correctFeedback");
     saveProgress();
     renderProgress();
     renderMistakes();
     setTimeout(buildQuiz, 750);
   } else {
     progress.mistakes[quizItem.word] = (progress.mistakes[quizItem.word] || 0) + 1;
-    quizFeedback.textContent = `Nêzîk bû. Bersiva rast: ${correctAnswer}`;
+    quizFeedback.textContent = `${t("wrongFeedback")} ${correctAnswer}`;
     saveProgress();
     renderProgress();
     renderMistakes();
@@ -377,6 +525,7 @@ clearProgressButton.addEventListener("click", () => {
   buildQuiz();
 });
 
+renderInterfaceText();
 renderLanguageSelect();
 renderCategoryFilter();
 setDailyWord();
