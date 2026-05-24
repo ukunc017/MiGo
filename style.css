@@ -200,7 +200,7 @@ h2 {
 
 .study-toolbar {
   display: grid;
-  grid-template-columns: 1fr 270px 270px;
+  grid-template-columns: minmax(220px, 1fr) minmax(160px, 220px) minmax(180px, 260px);
   gap: 18px;
   align-items: end;
   margin-bottom: 22px;
@@ -214,12 +214,18 @@ h2 {
 .language-select select {
   width: 100%;
   margin-top: 10px;
-  padding: 14px 16px;
+  min-height: 48px;
+  padding: 11px 40px 11px 14px;
   border: 1px solid rgba(32, 26, 19, 0.14);
-  border-radius: 18px;
+  border-radius: 14px;
   color: var(--ink);
   background: #fffffc;
   font-weight: 800;
+}
+
+.language-select,
+.category-select {
+  min-width: 0;
 }
 
 .dashboard {
