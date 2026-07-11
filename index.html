@@ -103,6 +103,33 @@
           </div>
         </article>
 
+        <article class="panel ai-panel">
+          <div class="ai-panel-header">
+            <div class="section-heading">
+              <p data-i18n="aiEyebrow">AI öğretmen</p>
+              <h2 data-i18n="aiTitle">MiGo'ya sor</h2>
+            </div>
+            <span class="ai-status" id="ai-status" data-i18n="aiReady">Hazır</span>
+          </div>
+
+          <div class="ai-mode-switch" role="group" aria-label="AI çalışma modu" data-i18n-aria="aiModeAria">
+            <button class="ai-mode-button active" type="button" data-ai-mode="tutor" data-i18n="aiTutorMode">Öğretmene sor</button>
+            <button class="ai-mode-button" type="button" data-ai-mode="correct" data-i18n="aiCorrectMode">Cümlemi düzelt</button>
+            <button class="ai-mode-button" type="button" data-ai-mode="quiz" data-i18n="aiQuizMode">Quiz hazırla</button>
+          </div>
+
+          <div class="ai-chat" id="ai-chat" aria-live="polite"></div>
+
+          <form class="ai-composer" id="ai-form">
+            <label class="sr-only" for="ai-input" data-i18n="aiInputLabel">AI öğretmene mesaj</label>
+            <textarea id="ai-input" rows="3" maxlength="1200" data-i18n-placeholder="aiTutorPlaceholder"></textarea>
+            <div class="ai-composer-footer">
+              <span class="ai-counter" id="ai-counter">0 / 1200</span>
+              <button class="primary ai-send-button" id="ai-send" type="submit" data-i18n="aiSendButton">Gönder</button>
+            </div>
+          </form>
+        </article>
+
         <article class="panel mistakes-panel">
           <div class="section-heading">
             <p data-i18n="mistakesEyebrow">Deftera şaşiyan</p>

@@ -138,6 +138,23 @@ const uiText = {
     noMistakesCopy: "Quiz çözdükçe bu bölüm akıllanır.",
     repeatCount: "kez tekrar edilmeli",
     clearProgressButton: "İlerlemeyi sıfırla",
+    aiEyebrow: "AI öğretmen",
+    aiTitle: "MiGo'ya sor",
+    aiReady: "Hazır",
+    aiThinking: "Düşünüyor",
+    aiModeAria: "AI çalışma modu",
+    aiTutorMode: "Öğretmene sor",
+    aiCorrectMode: "Cümlemi düzelt",
+    aiQuizMode: "Quiz hazırla",
+    aiInputLabel: "AI öğretmene mesaj",
+    aiTutorPlaceholder: "Kurmanci hakkında bir şey sor...",
+    aiCorrectPlaceholder: "Düzeltilmesini istediğin Kurmanci cümleyi yaz...",
+    aiQuizPlaceholder: "İstersen bir konu yaz veya doğrudan quiz hazırla...",
+    aiSendButton: "Gönder",
+    aiGreeting: "Silav! Ben MiGo AI öğretmeninim. Kurmanci bir soru sorabilir, cümleni düzelttirebilir veya kişisel bir quiz isteyebilirsin.",
+    aiQuizRequest: "Bana seviyeme göre kısa bir Kurmanci quiz hazırla.",
+    aiEmptyError: "Lütfen önce bir mesaj yaz.",
+    aiRequestError: "AI öğretmene şu anda ulaşılamıyor. Vercel ortamında OPENAI_API_KEY ayarını kontrol et.",
   },
   de: {
     pageLang: "de",
@@ -178,6 +195,23 @@ const uiText = {
     noMistakesCopy: "Dieser Bereich füllt sich, sobald du Quizfragen beantwortest.",
     repeatCount: "Mal wiederholen",
     clearProgressButton: "Fortschritt zurücksetzen",
+    aiEyebrow: "KI-Lehrer",
+    aiTitle: "MiGo fragen",
+    aiReady: "Bereit",
+    aiThinking: "Denkt nach",
+    aiModeAria: "KI-Lernmodus",
+    aiTutorMode: "Lehrer fragen",
+    aiCorrectMode: "Satz korrigieren",
+    aiQuizMode: "Quiz erstellen",
+    aiInputLabel: "Nachricht an den KI-Lehrer",
+    aiTutorPlaceholder: "Stelle eine Frage zu Kurmanci...",
+    aiCorrectPlaceholder: "Schreibe den Kurmanci-Satz, den du korrigieren möchtest...",
+    aiQuizPlaceholder: "Nenne ein Thema oder lass direkt ein Quiz erstellen...",
+    aiSendButton: "Senden",
+    aiGreeting: "Silav! Ich bin dein MiGo KI-Lehrer. Du kannst eine Frage zu Kurmanci stellen, einen Satz korrigieren lassen oder ein persönliches Quiz anfordern.",
+    aiQuizRequest: "Erstelle ein kurzes Kurmanci-Quiz passend zu meinem Niveau.",
+    aiEmptyError: "Bitte schreibe zuerst eine Nachricht.",
+    aiRequestError: "Der KI-Lehrer ist gerade nicht erreichbar. Prüfe OPENAI_API_KEY in deiner Vercel-Umgebung.",
   },
   en: {
     pageLang: "en",
@@ -218,6 +252,23 @@ const uiText = {
     noMistakesCopy: "This section gets smarter as you answer quiz questions.",
     repeatCount: "times to repeat",
     clearProgressButton: "Reset progress",
+    aiEyebrow: "AI tutor",
+    aiTitle: "Ask MiGo",
+    aiReady: "Ready",
+    aiThinking: "Thinking",
+    aiModeAria: "AI study mode",
+    aiTutorMode: "Ask the tutor",
+    aiCorrectMode: "Correct my sentence",
+    aiQuizMode: "Create a quiz",
+    aiInputLabel: "Message for the AI tutor",
+    aiTutorPlaceholder: "Ask something about Kurmanci...",
+    aiCorrectPlaceholder: "Write the Kurmanci sentence you want corrected...",
+    aiQuizPlaceholder: "Add a topic or generate a quiz right away...",
+    aiSendButton: "Send",
+    aiGreeting: "Silav! I am your MiGo AI tutor. Ask a Kurmanci question, get a sentence corrected, or request a personal quiz.",
+    aiQuizRequest: "Create a short Kurmanci quiz for my current level.",
+    aiEmptyError: "Please write a message first.",
+    aiRequestError: "The AI tutor is unavailable. Check OPENAI_API_KEY in your Vercel environment.",
   },
 };
 
@@ -236,6 +287,8 @@ let score = 0;
 let selectedCategory = "all";
 let selectedLanguage = loadPreferences().language;
 let progress = loadProgress();
+let aiMode = "tutor";
+let aiConversation = [];
 
 const dailyWord = document.querySelector("#daily-word");
 const dailyMeaning = document.querySelector("#daily-meaning");
@@ -259,6 +312,13 @@ const quizFeedback = document.querySelector("#quiz-feedback");
 const scoreElement = document.querySelector("#score");
 const mistakeList = document.querySelector("#mistake-list");
 const clearProgressButton = document.querySelector("#clear-progress");
+const aiModeSwitch = document.querySelector(".ai-mode-switch");
+const aiChat = document.querySelector("#ai-chat");
+const aiForm = document.querySelector("#ai-form");
+const aiInput = document.querySelector("#ai-input");
+const aiCounter = document.querySelector("#ai-counter");
+const aiSendButton = document.querySelector("#ai-send");
+const aiStatus = document.querySelector("#ai-status");
 
 function loadProgress() {
   try {
@@ -300,6 +360,9 @@ function renderInterfaceText() {
   });
   document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
     element.setAttribute("aria-label", t(element.dataset.i18nAria));
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+    element.setAttribute("placeholder", t(element.dataset.i18nPlaceholder));
   });
 }
 
@@ -409,6 +472,90 @@ function renderMistakes() {
     .join("");
 }
 
+function appendAiMessage(role, content, remember = true) {
+  const message = document.createElement("div");
+  message.className = `ai-message ${role}`;
+  message.textContent = content;
+  aiChat.append(message);
+  aiChat.scrollTop = aiChat.scrollHeight;
+
+  if (remember) {
+    aiConversation.push({ role, content });
+    aiConversation = aiConversation.slice(-8);
+  }
+}
+
+function resetAiConversation() {
+  aiConversation = [];
+  aiChat.replaceChildren();
+  appendAiMessage("assistant", t("aiGreeting"), false);
+}
+
+function getAiPlaceholderKey() {
+  return {
+    tutor: "aiTutorPlaceholder",
+    correct: "aiCorrectPlaceholder",
+    quiz: "aiQuizPlaceholder",
+  }[aiMode];
+}
+
+function renderAiMode() {
+  aiModeSwitch.querySelectorAll("[data-ai-mode]").forEach((button) => {
+    const isActive = button.dataset.aiMode === aiMode;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+  aiInput.dataset.i18nPlaceholder = getAiPlaceholderKey();
+  aiInput.setAttribute("placeholder", t(getAiPlaceholderKey()));
+}
+
+function setAiBusy(isBusy) {
+  aiInput.disabled = isBusy;
+  aiSendButton.disabled = isBusy;
+  aiStatus.classList.toggle("busy", isBusy);
+  aiStatus.textContent = t(isBusy ? "aiThinking" : "aiReady");
+}
+
+function getMistakeWords() {
+  return Object.entries(progress.mistakes)
+    .sort(([, firstCount], [, secondCount]) => secondCount - firstCount)
+    .map(([word]) => word)
+    .slice(0, 20);
+}
+
+async function sendAiMessage(message) {
+  const previousHistory = aiConversation.slice(-8);
+  appendAiMessage("user", message);
+  setAiBusy(true);
+
+  try {
+    const response = await fetch("/api/tutor", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message,
+        mode: aiMode,
+        language: selectedLanguage,
+        learnedWords: progress.learnedWords.slice(-20),
+        mistakeWords: getMistakeWords(),
+        history: previousHistory,
+      }),
+    });
+
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok || typeof payload.reply !== "string") {
+      throw new Error("AI request failed");
+    }
+
+    appendAiMessage("assistant", payload.reply);
+  } catch {
+    appendAiMessage("assistant", t("aiRequestError"), false);
+  } finally {
+    setAiBusy(false);
+    aiInput.focus();
+  }
+}
+
 function shuffle(items) {
   return [...items].sort(() => Math.random() - 0.5);
 }
@@ -478,7 +625,41 @@ languageSelect.addEventListener("change", (event) => {
   renderCard();
   renderPhrases();
   renderMistakes();
+  renderAiMode();
+  resetAiConversation();
   buildQuiz();
+});
+
+aiModeSwitch.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-ai-mode]");
+  if (!button || button.dataset.aiMode === aiMode) {
+    return;
+  }
+
+  aiMode = button.dataset.aiMode;
+  renderAiMode();
+  resetAiConversation();
+  aiInput.focus();
+});
+
+aiInput.addEventListener("input", () => {
+  aiCounter.textContent = `${aiInput.value.length} / 1200`;
+});
+
+aiForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const message = aiInput.value.trim() || (aiMode === "quiz" ? t("aiQuizRequest") : "");
+
+  if (!message) {
+    aiInput.setCustomValidity(t("aiEmptyError"));
+    aiInput.reportValidity();
+    return;
+  }
+
+  aiInput.setCustomValidity("");
+  aiInput.value = "";
+  aiCounter.textContent = "0 / 1200";
+  sendAiMessage(message);
 });
 
 categoryFilter.addEventListener("change", (event) => {
