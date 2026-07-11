@@ -98,10 +98,40 @@ const phrases = [
   { ku: "Ev çi ye?", meaning: { tr: "Bu nedir?", de: "Was ist das?", en: "What is this?" } },
 ];
 
+const levels = [
+  { id: "A1", comingSoon: false },
+  { id: "A2", comingSoon: false },
+  { id: "B1", comingSoon: true },
+];
+
+const units = [
+  { category: "Silavkirin", level: "A1", order: 1, title: { tr: "Selamlaşma", de: "Begrüßung", en: "Greetings" } },
+  { category: "Bingehîn", level: "A1", order: 2, title: { tr: "Temel kelimeler", de: "Grundwörter", en: "Basics" } },
+  { category: "Nazikî", level: "A1", order: 3, title: { tr: "Nezaket", de: "Höflichkeit", en: "Politeness" } },
+  { category: "Cînav", level: "A1", order: 4, title: { tr: "Zamirler", de: "Pronomen", en: "Pronouns" } },
+  { category: "Malbat", level: "A1", order: 5, title: { tr: "Aile", de: "Familie", en: "Family" } },
+  { category: "Hejmar", level: "A1", order: 6, title: { tr: "Sayılar", de: "Zahlen", en: "Numbers" } },
+  { category: "Reng", level: "A1", order: 7, title: { tr: "Renkler", de: "Farben", en: "Colors" } },
+  { category: "Mirov", level: "A1", order: 8, title: { tr: "İnsanlar", de: "Menschen", en: "People" } },
+  { category: "Mal", level: "A1", order: 9, title: { tr: "Ev eşyaları", de: "Haushaltsgegenstände", en: "Household items" } },
+  { category: "Xwarin û vexwarin", level: "A2", order: 1, title: { tr: "Yiyecek ve içecek", de: "Essen und Trinken", en: "Food & drink" } },
+  { category: "Dem", level: "A2", order: 2, title: { tr: "Zaman", de: "Zeit", en: "Time" } },
+  { category: "Cih", level: "A2", order: 3, title: { tr: "Yerler", de: "Orte", en: "Places" } },
+  { category: "Rengdêr", level: "A2", order: 4, title: { tr: "Sıfatlar", de: "Adjektive", en: "Adjectives" } },
+  { category: "Lêker", level: "A2", order: 5, title: { tr: "Fiiller", de: "Verben", en: "Verbs" } },
+  { category: "Dibistan", level: "A2", order: 6, title: { tr: "Okul", de: "Schule", en: "School" } },
+  { category: "Laş û cil", level: "A2", order: 7, title: { tr: "Vücut ve kıyafet", de: "Körper und Kleidung", en: "Body & clothes" } },
+  { category: "Hest", level: "A2", order: 8, title: { tr: "Duygular", de: "Gefühle", en: "Emotions" } },
+];
+
+const SRS_INTERVALS = [1, 2, 4, 7, 14];
+
 const uiText = {
   tr: {
     pageLang: "tr",
     allCategories: "Tüm kategoriler",
+    comingSoonLabel: "Yakında",
+    dueLabel: "Tekrar zamanı",
     heroEyebrow: "MiGo ile Kurmanci",
     heroTitle: "Her gün biraz Kurmanci öğren.",
     heroCopy: "Kelime kartları, günlük cümleler ve kısa quizlerle Kurmanci öğrenmeye sıcak ve sade bir başlangıç yap.",
@@ -159,6 +189,8 @@ const uiText = {
   de: {
     pageLang: "de",
     allCategories: "Alle Kategorien",
+    comingSoonLabel: "Bald",
+    dueLabel: "Fällig heute",
     heroEyebrow: "Kurmanci mit MiGo",
     heroTitle: "Lerne jeden Tag ein wenig Kurmanci.",
     heroCopy: "Starte einfach und angenehm mit Wortkarten, Alltagssätzen und kurzen Quizzen.",
@@ -216,6 +248,8 @@ const uiText = {
   en: {
     pageLang: "en",
     allCategories: "All categories",
+    comingSoonLabel: "Coming soon",
+    dueLabel: "Due for review",
     heroEyebrow: "Kurmanci with MiGo",
     heroTitle: "Learn a little Kurmanci every day.",
     heroCopy: "Start warmly and simply with word cards, everyday phrases, and quick quizzes.",
@@ -279,6 +313,7 @@ const defaultProgress = {
   mistakes: {},
   correctAnswers: 0,
   totalAnswers: 0,
+  srs: {},
 };
 
 let cardIndex = 0;
@@ -295,9 +330,11 @@ const dailyMeaning = document.querySelector("#daily-meaning");
 const learnedCount = document.querySelector("#learned-count");
 const correctCount = document.querySelector("#correct-count");
 const accuracyRate = document.querySelector("#accuracy-rate");
+const dueCountElement = document.querySelector("#due-count");
 const languageSelect = document.querySelector("#learning-language");
 const categoryFilter = document.querySelector("#category-filter");
 const flashWord = document.querySelector("#flash-word");
+const flashLevel = document.querySelector("#flash-level");
 const flashCategory = document.querySelector("#flash-category");
 const flashPronunciation = document.querySelector("#flash-pronunciation");
 const flashTranslation = document.querySelector("#flash-translation");
@@ -374,6 +411,31 @@ function getActiveVocabulary() {
   return vocabulary.filter((item) => item.category === selectedCategory);
 }
 
+function getUnitForCategory(category) {
+  return units.find((unit) => unit.category === category);
+}
+
+function getUnitsForLevel(level) {
+  return units.filter((unit) => unit.level === level).sort((a, b) => a.order - b.order);
+}
+
+function getTodayIso() {
+  const now = new Date();
+  return new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+}
+
+function addDaysIso(days) {
+  const now = new Date();
+  now.setDate(now.getDate() + days);
+  return new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+}
+
+function updateSrs(word, wasCorrect) {
+  const previousBox = progress.srs[word]?.box ?? 0;
+  const box = wasCorrect ? Math.min(previousBox + 1, 5) : 1;
+  progress.srs[word] = { box, dueDate: addDaysIso(SRS_INTERVALS[box - 1]) };
+}
+
 function setDailyWord() {
   const today = new Date();
   const index = today.getDate() % vocabulary.length;
@@ -388,10 +450,14 @@ function renderProgress() {
       ? 0
       : Math.round((progress.correctAnswers / progress.totalAnswers) * 100);
 
+  const today = getTodayIso();
+  const dueCount = Object.values(progress.srs).filter((entry) => entry.dueDate <= today).length;
+
   learnedCount.textContent = progress.learnedWords.length;
   correctCount.textContent = progress.correctAnswers;
   accuracyRate.textContent = `${accuracy}%`;
   scoreElement.textContent = score;
+  dueCountElement.textContent = dueCount;
 }
 
 function renderLanguageSelect() {
@@ -402,16 +468,23 @@ function renderLanguageSelect() {
 }
 
 function renderCategoryFilter() {
-  const categories = [
-    { value: "all", label: t("allCategories") },
-    ...[...new Set(vocabulary.map((item) => item.category))].map((category) => ({
-      value: category,
-      label: category,
-    })),
-  ];
-  categoryFilter.innerHTML = categories
-    .map((category) => `<option value="${category.value}">${category.label}</option>`)
+  const allOption = `<option value="all">${t("allCategories")}</option>`;
+
+  const levelGroups = levels
+    .map((level) => {
+      if (level.comingSoon) {
+        return `<optgroup label="${level.id} · ${t("comingSoonLabel")}" disabled><option disabled>${level.id}</option></optgroup>`;
+      }
+
+      const options = getUnitsForLevel(level.id)
+        .map((unit) => `<option value="${unit.category}">${unit.title[selectedLanguage] || unit.title.tr}</option>`)
+        .join("");
+
+      return `<optgroup label="${level.id}">${options}</optgroup>`;
+    })
     .join("");
+
+  categoryFilter.innerHTML = allOption + levelGroups;
   categoryFilter.value = selectedCategory;
 }
 
@@ -421,6 +494,7 @@ function renderCard() {
   const isLearned = progress.learnedWords.includes(item.word);
 
   flashWord.textContent = item.word;
+  flashLevel.textContent = getUnitForCategory(item.category)?.level || "";
   flashCategory.textContent = item.category;
   flashPronunciation.textContent = item.pronunciation;
   flashTranslation.textContent = translate(item);
@@ -562,9 +636,22 @@ function shuffle(items) {
 
 function chooseQuizItem() {
   const activeVocabulary = getActiveVocabulary();
+  const today = getTodayIso();
+
+  const duePool = activeVocabulary.filter(
+    (item) => progress.srs[item.word] && progress.srs[item.word].dueDate <= today,
+  );
+  if (duePool.length > 0) {
+    return duePool[Math.floor(Math.random() * duePool.length)];
+  }
+
+  const newPool = activeVocabulary.filter((item) => !progress.srs[item.word]);
+  if (newPool.length > 0) {
+    return newPool[Math.floor(Math.random() * newPool.length)];
+  }
+
   const mistakeWords = Object.keys(progress.mistakes);
   const mistakePool = activeVocabulary.filter((item) => mistakeWords.includes(item.word));
-
   if (mistakePool.length > 0 && Math.random() < 0.55) {
     return mistakePool[Math.floor(Math.random() * mistakePool.length)];
   }
@@ -682,6 +769,7 @@ quizOptions.addEventListener("click", (event) => {
     score += 1;
     progress.correctAnswers += 1;
     delete progress.mistakes[quizItem.word];
+    updateSrs(quizItem.word, true);
     quizFeedback.textContent = t("correctFeedback");
     saveProgress();
     renderProgress();
@@ -689,6 +777,7 @@ quizOptions.addEventListener("click", (event) => {
     setTimeout(buildQuiz, 750);
   } else {
     progress.mistakes[quizItem.word] = (progress.mistakes[quizItem.word] || 0) + 1;
+    updateSrs(quizItem.word, false);
     quizFeedback.textContent = `${t("wrongFeedback")} ${correctAnswer}`;
     saveProgress();
     renderProgress();

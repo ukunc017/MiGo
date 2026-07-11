@@ -167,7 +167,7 @@ h2 {
 
 .progress-strip {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
   margin-bottom: 22px;
 }
@@ -410,6 +410,20 @@ h2 {
   background: rgba(242, 184, 75, 0.45);
   font-size: 0.82rem;
   font-weight: 800;
+}
+
+.pill-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pill-row .category-pill {
+  margin-top: 18px;
+}
+
+.level-pill {
+  background: rgba(42, 127, 134, 0.3);
 }
 
 .translation {
